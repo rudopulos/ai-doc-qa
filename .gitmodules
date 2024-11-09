@@ -1,0 +1,3 @@
+[submodule "ai-doc-qa-backend"]
+	path = ai-doc-qa-backend
+	url = https://github.com/rudopulos/ai-doc-qa-backend
