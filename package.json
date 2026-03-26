@@ -1,0 +1,9 @@
+{
+  "name": "ai-doc-qa-root",
+  "version": "1.0.0",
+  "description": "Root configuration for DocuMind AI Monorepo",
+  "scripts": {
+    "build": "cd ai-doc-qa-frontend && npm install && npm run build",
+    "start": "cd ai-doc-qa-backend && npm install && node index.js"
+  }
+}
