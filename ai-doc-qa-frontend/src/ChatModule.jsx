@@ -2,6 +2,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 
 const ChatModule = () => {
+    const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
     const [messages, setMessages] = useState([
         { role: 'ai', content: 'Salut! Sunt DocuMind AI. După ce încarci un document, mă poți întreba orice despre conținutul acestuia.' }
     ]);
@@ -27,7 +29,7 @@ const ChatModule = () => {
         setIsLoading(true);
 
         try {
-            const response = await axios.post('http://localhost:5000/chat', { question: userQuestion });
+            const response = await axios.post(`${API_URL}/chat`, { question: userQuestion });
             setMessages(prev => [...prev, { role: 'ai', content: response.data.answer }]);
         } catch (error) {
             console.error("Chat error:", error);
