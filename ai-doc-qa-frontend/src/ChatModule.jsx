@@ -9,6 +9,7 @@ const ChatModule = () => {
     ]);
     const [input, setInput] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+    const messagesEndRef = useRef(null);
     const isInitialMount = useRef(true);
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
