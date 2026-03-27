@@ -9,14 +9,17 @@ const ChatModule = () => {
     ]);
     const [input, setInput] = useState('');
     const [isLoading, setIsLoading] = useState(false);
-    const messagesEndRef = useRef(null);
-
+    const isInitialMount = useRef(true);
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
     };
 
     useEffect(() => {
-        scrollToBottom();
+        if (isInitialMount.current) {
+            isInitialMount.current = false;
+        } else {
+            scrollToBottom();
+        }
     }, [messages]);
 
     const handleSend = async (e) => {
