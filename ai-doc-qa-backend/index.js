@@ -168,7 +168,7 @@ ${context}
 
     } catch (err) {
         console.error("Eroare în fluxul de Chat (Gemini):", err.message);
-        res.status(500).send({ error: 'Eroare la generarea răspunsului AI. Verificați cheia Gemini.' });
+        res.status(500).send({ error: `Eroare Google Gemini: ${err.message}` });
     }
 });
 
