@@ -30,7 +30,9 @@ app.get('/health', (req, res) => {
 });
 
 // Serve frontend static files
-app.use(express.static(path.join(__dirname, '../ai-doc-qa-frontend/build')));
+const frontendBuildPath = path.resolve(__dirname, '..', 'ai-doc-qa-frontend', 'build');
+app.use(express.static(frontendBuildPath));
+console.log("Serving static files from:", frontendBuildPath);
 
 
 app.post('/upload', upload.single('document'), async (req, res) => {
@@ -172,7 +174,7 @@ ${context}
 
 // Always serve the index.html for any unknown route (React handles routing)
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../ai-doc-qa-frontend/build', 'index.html'));
+    res.sendFile(path.join(frontendBuildPath, 'index.html'));
 });
 
 

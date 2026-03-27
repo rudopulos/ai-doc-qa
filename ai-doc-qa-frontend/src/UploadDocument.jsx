@@ -63,7 +63,7 @@ const UploadDocument = () => {
         const formData = new FormData();
         formData.append('document', file);
 
-        const API_URL = import.meta.env.VITE_API_URL || '';
+        const API_URL = '';
         try {
             const response = await axios.post(`${API_URL}/upload`, formData, {
                 headers: {
