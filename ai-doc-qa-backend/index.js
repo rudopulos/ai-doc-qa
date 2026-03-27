@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const cors = require('cors');
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 const multer = require('multer');
@@ -27,6 +28,9 @@ app.use(express.json());
 app.get('/health', (req, res) => {
     res.status(200).send('OK');
 });
+
+// Serve frontend static files
+app.use(express.static(path.join(__dirname, '../ai-doc-qa-frontend/build')));
 
 
 app.post('/upload', upload.single('document'), async (req, res) => {
@@ -164,6 +168,11 @@ ${context}
         console.error("Eroare în fluxul de Chat (Gemini):", err.message);
         res.status(500).send({ error: 'Eroare la generarea răspunsului AI. Verificați cheia Gemini.' });
     }
+});
+
+// Always serve the index.html for any unknown route (React handles routing)
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../ai-doc-qa-frontend/build', 'index.html'));
 });
 
 

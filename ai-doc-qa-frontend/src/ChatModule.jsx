@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 
 const ChatModule = () => {
-    const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+    const API_URL = import.meta.env.VITE_API_URL || '';
 
     const [messages, setMessages] = useState([
         { role: 'ai', content: 'Salut! Sunt DocuMind AI. După ce încarci un document, mă poți întreba orice despre conținutul acestuia.' }
