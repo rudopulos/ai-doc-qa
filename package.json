@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Root configuration for DocuMind AI Monorepo",
   "scripts": {
-    "build": "npm install --prefix ai-doc-qa-frontend && npm run build --prefix ai-doc-qa-frontend",
-    "start": "npm install --prefix ai-doc-qa-backend && npm start --prefix ai-doc-qa-backend"
+    "build": "npm install --prefix ai-doc-qa-frontend && npm run build --prefix ai-doc-qa-frontend && npm install --prefix ai-doc-qa-backend",
+    "start": "npm start --prefix ai-doc-qa-backend"
   }
 }

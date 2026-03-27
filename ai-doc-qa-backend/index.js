@@ -23,6 +23,11 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
+// Health check endpoint for Render
+app.get('/health', (req, res) => {
+    res.status(200).send('OK');
+});
+
 
 app.post('/upload', upload.single('document'), async (req, res) => {
     console.log("Request primit la /upload");
@@ -163,14 +168,21 @@ ${context}
 
 
 const startServer = async () => {
-    await initPinecone();
-    console.log("Cheie Pinecone API:", process.env.PINECONE_API_KEY);
-    console.log("Mediu Pinecone:", process.env.PINECONE_ENVIRONMENT); 
+    // Start listening immediately so Render detects the open port
     app.listen(PORT, () => {
         console.log(`Server running on port ${PORT}`);
     });
+
+    // Initialize Pinecone in the background
+    try {
+        console.log("Initializing Pinecone...");
+        await initPinecone();
+        console.log("Pinecone initialized successfully.");
+    } catch (err) {
+        console.error("Failed to initialize Pinecone:", err);
+    }
 };
 
 startServer().catch(err => {
-    console.error('Error starting server:', err);
+    console.error('Critical error in startServer:', err);
 });
