@@ -15,7 +15,7 @@ console.log("PINECONE_ENVIRONMENT:", process.env.PINECONE_ENVIRONMENT);
 console.log("GEMINI_API_KEY:", process.env.GEMINI_API_KEY ? "Loaded" : "Missing");
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-const geminiModel = genAI.getGenerativeModel({ model: "gemini-pro" });
+const geminiModel = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
 const app = express();
 const upload = multer();
@@ -168,7 +168,7 @@ ${context}
 
     } catch (err) {
         console.error("Eroare în fluxul de Chat (Gemini):", err.message);
-        res.status(500).send({ error: `Eroare Google Gemini: ${err.message}` });
+        res.status(500).send({ error: 'Eroare la generarea răspunsului AI. Vă rugăm să încercați din nou.' });
     }
 });
 
